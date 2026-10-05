@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#17120f" />
+  <link rel="icon" type="image/png" href="/assets/branding/icons/logo.png" />
+  <title>Админ · БИТВА ШКОЛ</title>
+  <link rel="stylesheet" href="/assets/admin.css" />
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+</head>
+<body>
+  <main class="admin-shell">
+    <section id="loginCard" class="admin-card login-card">
+      <div class="admin-brand"><img src="/assets/branding/icons/logo.png" alt="" /><div><span>БИТВА ШКОЛ</span><strong>ADMIN</strong></div></div>
+      <h1>Вход администратора</h1>
+      <p class="muted">Доступ к добавлению школ, фотографий и защите от абьюза.</p>
+      <form id="loginForm">
+        <label>Логин<input id="loginUsername" autocomplete="username" required /></label>
+        <label>Пароль<input id="loginPassword" type="password" autocomplete="current-password" required /></label>
+        <div id="adminCaptcha"></div>
+        <button class="primary" type="submit">Войти</button>
+      </form>
+      <p id="loginError" class="error"></p>
+      <a class="back-link" href="/">← Вернуться на сайт</a>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <header class="admin-topbar">
+        <div class="admin-brand"><img src="/assets/branding/icons/logo.png" alt="" /><div><span>БИТВА ШКОЛ</span><strong>ADMIN</strong></div></div>
+        <button id="logoutBtn" class="ghost">Выйти</button>
+      </header>
+
+      <div id="adminStats" class="admin-stats"></div>
+
+      <div class="admin-grid">
+        <section class="admin-card">
+          <div class="card-head"><div><span class="eyebrow">РУЧНОЕ ДОБАВЛЕНИЕ</span><h2>Добавить школу</h2></div></div>
+          <form id="schoolForm" class="school-form">
+            <label>Название школы<input id="schoolNameInput" required maxlength="255" /></label>
+            <div class="two-cols"><label>Регион<input id="schoolRegionInput" placeholder="Московская область" required /></label><label>Город<input id="schoolCityInput" placeholder="Москва" required /></label></div>
+            <div class="two-cols"><label>Страна<input id="schoolCountryInput" value="Россия" maxlength="80" /></label><label>Категория<select id="schoolCategoryInput" required></select></label></div>
+            <label>Фотография <span class="muted">JPG/PNG/WebP, до 8 МБ</span><input id="schoolPhotoInput" type="file" accept="image/jpeg,image/png,image/webp" /></label>
+            <button class="primary" type="submit">Добавить в рейтинг</button>
+          </form>
+          <p id="schoolFormStatus" class="status"></p>
+        </section>
+
+        <section class="admin-card">
+          <div class="card-head"><div><span class="eyebrow">ЗАЩИТА</span><h2>Сигналы абьюза</h2></div></div>
+          <div id="abuseList" class="abuse-list"></div>
+        </section>
+      </div>
+
+      <section class="admin-card schools-card">
+        <div class="card-head"><div><span class="eyebrow">СПИСОК</span><h2>Учебные заведения</h2></div><span class="muted">Для 17 951 записи открывается только нужная страница.</span></div><input id="schoolSearch" class="school-search" placeholder="Поиск по школе или городу…" /><div id="schoolsList" class="schools-list"></div><div class="pagination"><button id="schoolPrev" class="ghost">←</button><span id="schoolPage" class="muted">1 / 1</span><button id="schoolNext" class="ghost">→</button></div>
+      </section>
+    </section>
+  </main>
+  <script src="/assets/admin.js" defer></script>
+</body>
+</html>
